@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 
+import CounterApp from './component/ButtonApp'
+
 const FormComponent = (props) => {
   console.log(props);
-  const [users, setUsers] = useState([]);
   const { values, touched, errors, status, addUser } = props;
 
   //implemented useEffect so user doesn't re-render everytime
@@ -13,7 +14,7 @@ const FormComponent = (props) => {
       //checking if status is defined
     if (status) {
         //appends to array
-      addUser(status);
+      props.addUser(status);
     }
   }, [status]);
 
@@ -23,8 +24,8 @@ const FormComponent = (props) => {
       <Field type="text" name="username" placeholder="username"/>
       {touched.password && errors.password && <p className="error">{errors.password}</p>}
       <Field type="password" name="password" placeholder=""/>
-      <button type="submit">Submit</button>
-      {users.map(user  =><div key={users.id}>{JSON.stringify(user)}</div>)}
+      {/* <button data-testid='formsubmit'type="submit">Submit</button> */}
+      <CounterApp/>
     </Form>
   );
 };

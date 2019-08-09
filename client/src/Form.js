@@ -5,9 +5,14 @@ import axios from 'axios';
 
 const FormComponent = (props) => {
   console.log(props);
+  const [users, setUsers] = useState([]);
   const { values, touched, errors, status, addUser } = props;
+
+  //implemented useEffect so user doesn't re-render everytime
   useEffect(() => {
+      //checking if status is defined
     if (status) {
+        //appends to array
       addUser(status);
     }
   }, [status]);
@@ -19,6 +24,7 @@ const FormComponent = (props) => {
       {touched.password && errors.password && <p className="error">{errors.password}</p>}
       <Field type="password" name="password" placeholder=""/>
       <button type="submit">Submit</button>
+      {users.map(user  =><div key={users.id}>{JSON.stringify(user)}</div>)}
     </Form>
   );
 };
@@ -37,11 +43,10 @@ const FormikForm = withFormik({
       .min(4, "Password must be atleast 4 characters long")
       .required("Password is required"),
   }),
+
+  //setStatus handles data coming back from server. sets state by communicating with component
   handleSubmit: (values, { resetForm, setStatus, setErrors }) => {
     console.log("Request");
-    if (values.email === "jyoojs@gmail.com") {
-      setErrors({ email: "Email is already taken" });
-    } else {
       axios.post('http://localhost:5000/api/register', values)
         .then(res => {
           console.log(res);
@@ -52,7 +57,6 @@ const FormikForm = withFormik({
           console.log(error);
         });
     }
-  }
 })(FormComponent);
 
 

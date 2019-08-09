@@ -10,13 +10,13 @@ const FormComponent = (props) => {
   const { values, touched, errors, status, addUser } = props;
 
   //implemented useEffect so user doesn't re-render everytime
-  useEffect(() => {
-      //checking if status is defined
-    if (status) {
-        //appends to array
-      props.addUser(status);
-    }
-  }, [status]);
+  // useEffect(() => {
+  //     //checking if status is defined
+  //   if (status) {
+  //       //appends to array
+  //     props.addUser(status);
+  //   }
+  // }, [status]);
 
   return (
     <Form>

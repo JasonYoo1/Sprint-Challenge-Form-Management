@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+//req for class components
 class UsersApp extends React.Component{
   constructor(){
     super();
@@ -8,7 +8,7 @@ class UsersApp extends React.Component{
       users:[]
     }
   }
-
+  //function that will get run when component is mounted. Once. this is where users can make requests
   componentDidMount(){
     this.fetchInfo()
   }
@@ -16,8 +16,10 @@ class UsersApp extends React.Component{
   fetchInfo = () => {
     fetch(`http://localhost:5000/api/restricted/data`)
     .then(res=>{
+      //json translates into data into obj/string that JavaScript could read taht comes with fetch
       return res.json()
     })
+    //which is why .then is req twice
     .then(res=> this.setState({ users:res },   console.log(res)))
     .catch(err => console.log(err))
   }

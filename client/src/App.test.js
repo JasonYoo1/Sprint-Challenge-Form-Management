@@ -15,7 +15,7 @@ describe('<App/>', ()=>{
 
 describe('<FormikForm/>', ()=>{
   it('counter button adds one', ()=>{
-    //getbyTestId allows access from component App
+    //getbyTestId allows access from component FormikForm
     const { getByTestId } = render(<FormikForm/>)
   
     //fireEvent.click clicks on data-testid inside btn
@@ -26,6 +26,11 @@ describe('<FormikForm/>', ()=>{
     expect(getByTestId('submitcounter')).toHaveTextContent('1')
   
   })
+  it('clicked', () => {
+    //create a imaginary function
+    const click = jest.fn();
+    const {getByText} = render(<FormikForm submit={click}/>)
+  });
 })
 
 

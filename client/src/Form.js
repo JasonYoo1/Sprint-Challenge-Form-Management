@@ -26,7 +26,7 @@ const FormComponent = (props) => {
       <Field type="password" name="password" placeholder=""/>
       {/* <button data-testid='formsubmit'type="submit">Submit</button> */}
       <CounterApp/>
-    </Form>
+    </Form >
   );
 };
 

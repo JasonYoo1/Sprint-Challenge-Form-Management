@@ -24,7 +24,7 @@ class CounterApp extends React.Component{
 
         {/*COUNTER ON CLICK FUNCTION*/}
         <div className="submitButtons">
-          <button data-testid='submitbtntest'type="submit" onClick={() => {
+          <button data-testid='submitbtntest' type="submit" onClick={() => {
             var counter = this.state.count
             if(counter >= 500){
               this.setState({count:0})
